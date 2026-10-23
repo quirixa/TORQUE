@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Torque | Discover and compare great cars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <a href="#home" class="logo">Torque</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">Menu</button>
+    <nav id="navLinks">
+      <a href="#explore">Explore</a>
+      <a href="#compare">Compare <span class="badge" id="compareCount">0</span></a>
+      <a href="#garage">Dream Garage <span class="badge" id="garageCount">0</span></a>
+      <a href="#reminders">Reminders</a>
+      <a href="#notifications">Alerts <span class="badge" id="alertCount">0</span></a>
+    </nav>
+  </header>
+
+  <!-- Landing page -->
+  <section class="hero" id="home">
+    <h1 class="masthead">Torque</h1>
+    <div class="hero-copy">
+      <p>Find the car that moves you. Browse, compare the numbers, and build a garage of the ones you want most.</p>
+      <a href="#explore" class="btn">Start exploring</a>
+    </div>
+    <img class="hero-img" id="heroImg" alt="Featured car">
+  </section>
+
+  <section class="section" id="featured">
+    <h2>Editor's picks</h2>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </section>
+
+  <!-- Car explorer -->
+  <section class="section" id="explore">
+    <h2>Explore every car</h2>
+    <div class="controls">
+      <input type="search" id="search" placeholder="Search by name, brand or engine">
+      <select id="brandFilter"></select>
+      <select id="typeFilter"></select>
+      <select id="sort">
+        <option value="name">Sort: Name</option>
+        <option value="hp-desc">Horsepower: high to low</option>
+        <option value="accel-asc">0-60: fastest first</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+      </select>
+    </div>
+    <p class="result-count" id="resultCount"></p>
+    <div class="car-grid" id="carGrid"></div>
+  </section>
+
+  <!-- Comparison tool -->
+  <section class="section" id="compare">
+    <h2>Compare</h2>
+    <p class="note">Pick up to 3 cars with the Compare button. The best figure in each row is highlighted.</p>
+    <div id="compareArea"></div>
+    <button class="btn ghost" id="clearCompare">Clear comparison</button>
+  </section>
+
+  <!-- Dream garage -->
+  <section class="section" id="garage">
+    <h2>Dream Garage</h2>
+    <p class="note">Cars you save stay here, even after you close the browser.</p>
+    <div class="car-grid" id="garageGrid"></div>
+  </section>
+
+  <!-- Personalized recommendations -->
+  <section class="section" id="recs">
+    <h2>Recommended for you</h2>
+    <p class="note" id="recsNote"></p>
+    <div class="car-grid" id="recsGrid"></div>
+  </section>
+
+  <!-- License and vehicle reminders -->
+  <section class="section" id="reminders">
+    <h2>Reminders</h2>
+    <div class="panels">
+      <div class="panel">
+        <h3>Driver's license</h3>
+        <form id="licenseForm">
+          <label>Expiry date <input type="date" id="licenseDate" required></label>
+          <button class="btn" type="submit">Save date</button>
+        </form>
+        <p class="status" id="licenseStatus"></p>
+      </div>
+      <div class="panel">
+        <h3>Vehicle dates</h3>
+        <form id="reminderForm">
+          <label>What is it for?
+            <select id="remType">
+              <option>Insurance renewal</option>
+              <option>Vehicle inspection</option>
+              <option>Registration renewal</option>
+              <option>Service appointment</option>
+            </select>
+          </label>
+          <label>Note (optional) <input type="text" id="remNote" maxlength="40" placeholder="e.g. Corvette"></label>
+          <label>Due date <input type="date" id="remDate" required></label>
+          <label>Remind me this many days before <input type="number" id="remDays" value="14" min="0" max="365"></label>
+          <button class="btn" type="submit">Add reminder</button>
+        </form>
+      </div>
+    </div>
+    <ul class="list" id="reminderList"></ul>
+  </section>
+
+  <!-- Notification center -->
+  <section class="section" id="notifications">
+    <h2>Notification Center</h2>
+    <div class="box">
+      <strong>This is a simulation.</strong> Torque has no server, so alerts are checked when this page loads and every 30 seconds while it stays open.
+      Real notifications that arrive when the site is closed need extra setup: a backend to store your data and send alerts, plus a service worker and the Push API.
+      New listings here are demo cars from an array, standing in for a real feed.
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="simulateBtn">Simulate a new listing</button>
+      <button class="btn ghost" id="enableAlerts">Enable browser alerts</button>
+      <button class="btn ghost" id="readAll">Mark all read</button>
+      <button class="btn ghost" id="clearNotes">Clear all</button>
+    </div>
+    <ul class="list" id="noteList"></ul>
+  </section>
+
+  <footer>Torque. Specs are approximate and for enjoyment.</footer>
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
